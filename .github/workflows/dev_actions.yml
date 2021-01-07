@@ -27,4 +27,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: generate_build_artifact
-        path: /home/runner/work/CI_CD_training/Ci_Cd_DemoApp/Ci_Cd_DemoApp/bin/Debug/netcoreapp3.1/publish/
+        path: /home/runner/work/CI_CD_training/CI_CD_training/Ci_Cd_DemoApp/bin/Debug/netcoreapp3.1/publish/
