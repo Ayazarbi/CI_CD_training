@@ -1,0 +1,30 @@
+name: dev_actions
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: publish
+      run: dotnet publish --no-build 
+    - name: artifact_upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: generate_build_artifact
+        path: /home/runner/work/CI_CD_training/Ci_Cd_DemoApp/Ci_Cd_DemoApp/bin/Debug/netcoreapp3.1/publish/
