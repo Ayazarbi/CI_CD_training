@@ -38,8 +38,7 @@ jobs:
         path: D:\a\CI_CD_training\CI_CD_training\Ci_Cd_DemoApp\bin\Debug\netcoreapp3.1\publish\
     - uses: actions/download-artifact@v2
       with:
-        name: generate_build_artifact
-        path: D:\  
+        name: generate_build_artifact 
     - name: show files
       shell: cmd
       run: dir D:\
