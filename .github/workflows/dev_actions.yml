@@ -44,4 +44,4 @@ jobs:
       run: dir D:\a\CI_CD_training\CI_CD_training
     - name: Deploy Application to Livee  
       shell: cmd  
-      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -source:contentPath=" D:\a\CI_CD_training\CI_CD_training\Ci_Cd_DemoApp\bin\Debug\netcoreapp3.1\publish\" dest:auto,computerName="http://3.22.68.224/:8172/msdeploy.axd?site=Mysite",username="EC2AMAZ-DHHL9I7\Administrator",password="!mnQ9&;L-eRANNTX%*k.ogNBVIR84CYB",authtype="Basic",includeAcls="False" -verb:sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -allowUntrusted'
+      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -source:contentPath=" D:\a\CI_CD_training\CI_CD_training\Ci_Cd_DemoApp\bin\Debug\netcoreapp3.1\publish\" -dest:auto,computerName="http://3.22.68.224/:8172/msdeploy.axd?site=Mysite",username="EC2AMAZ-DHHL9I7\Administrator",password="!mnQ9&;L-eRANNTX%*k.ogNBVIR84CYB",authtype="Basic",includeAcls="False" -verb:sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -allowUntrusted'
