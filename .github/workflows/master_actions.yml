@@ -9,7 +9,12 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    env:
+      Dest: ${{secrets.PUBLISH_DEST}}
+      Username: ${{secrets.USERNAME}}
+      ComputerName: ${{secrets.COMPUTER_NAME}}
+      Password: ${{secrets.PASSWORD}}
 
     steps:
     - uses: actions/checkout@v2
@@ -30,9 +35,12 @@ jobs:
     - name: Build
       run: dotnet build -c Release --no-restore
     - name: publish
-      run: dotnet publish -c Release --no-restore
+      run: dotnet publish -c Release --no-build
     - name: artifact_upload
       uses: actions/upload-artifact@v2
       with:
         name: generate_build_artifact
-        path:  /home/runner/work/CI_CD_training/CI_CD_training/Ci_Cd_DemoApp/bin/Release/netcoreapp3.1/publish/
+        path:  D:\a\CI_CD_training\CI_CD_training\Ci_Cd_DemoApp\bin\Release\netcoreapp3.1\publish
+    - name: Deploy Application to Livee  
+      shell: cmd  
+      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -source:contentPath="D:\a\CI_CD_training\CI_CD_training\Ci_Cd_DemoApp\bin\Release\netcoreapp3.1\publish" -dest:contentPath="${{ env.Dest}}",computerName="${{ env.ComputerName }}",username="${{ env.Username }}",password="${{ env.Password }}",authtype="Basic",includeAcls="False" -verb:sync -useCheckSum -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -allowUntrusted'
