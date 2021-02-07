@@ -43,9 +43,16 @@ jobs:
       #with:
        # name: generate_build_artifact
        # path: D:\a\CI_CD_training\CI_CD_training\Ci_Cd_DemoApp\bin\Debug\netcoreapp3.1\publish\
-    - name: path
+    - name: path1
       shell: cmd
       run: dir 'D:'
+    - name: path
+      shell: cmd
+      run: dir
+    - name: path3
+      shell: cmd
+      run: dir 'C:'
+      
        
    # - name: Stop Application Pool
     #  shell: cmd
