@@ -38,20 +38,20 @@ jobs:
       run: dotnet build --no-restore
     - name: publish
       run: dotnet publish --no-build 
-    - name: artifact_upload
-      uses: actions/upload-artifact@v2
-      with:
-        name: generate_build_artifact
-        path: D:\a\CI_CD_training\CI_CD_training\Ci_Cd_DemoApp\bin\Debug\netcoreapp3.1\publish\
-    - name: Stop Application Pool
-      shell: cmd
-      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="MySite",recycleMode="StopAppPool",computerName="${{ env.ComputerName }}",username="${{ env.Username }}",password="${{ env.Password }}",authtype="Basic"'
-    - name: Deploy Application to Livee  
-      shell: cmd  
-      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -source:contentPath="${{ env.Source }}" -dest:contentPath="${{ env.Dest}}",computerName="${{ env.ComputerName }}",username="${{ env.Username }}",password="${{ env.Password }}",authtype="Basic",includeAcls="False" -verb:sync -useCheckSum -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -allowUntrusted'
-    - name: Start Application Pool
-      shell: cmd
-      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="MySite",recycleMode="StartAppPool",computerName="${{ env.ComputerName }}",username="${{ env.Username }}",password="${{ env.Password }}",authtype="Basic"'
+    #- name: artifact_upload
+     # uses: actions/upload-artifact@v2
+     # with:
+     #   name: generate_build_artifact
+     #   path: D:\a\CI_CD_training\CI_CD_training\Ci_Cd_DemoApp\bin\Debug\netcoreapp3.1\publish\
+   # - name: Stop Application Pool
+    #  shell: cmd
+     # run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="MySite",recycleMode="StopAppPool",computerName="${{ env.ComputerName }}",username="${{ env.Username }}",password="${{ env.Password }}",authtype="Basic"'
+    #- name: Deploy Application to Livee  
+     # shell: cmd  
+     # run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -source:contentPath="${{ env.Source }}" -dest:contentPath="${{ env.Dest}}",computerName="${{ env.ComputerName }}",username="${{ env.Username }}",password="${{ env.Password }}",authtype="Basic",includeAcls="False" -verb:sync -useCheckSum -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -allowUntrusted'
+    #- name: Start Application Pool
+    #  shell: cmd
+    #  run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="MySite",recycleMode="StartAppPool",computerName="${{ env.ComputerName }}",username="${{ env.Username }}",password="${{ env.Password }}",authtype="Basic"'
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v14
       with:
