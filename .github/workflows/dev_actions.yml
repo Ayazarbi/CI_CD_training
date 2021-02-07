@@ -38,6 +38,8 @@ jobs:
       run: dotnet build --no-restore
     - name: publish
       run: dotnet publish --no-build 
+    - name: Generate deployment package
+      run: zip -r deploy.zip . -x '*.git*'
     #- name: artifact_upload
      # uses: actions/upload-artifact@v2
      # with:
@@ -57,8 +59,8 @@ jobs:
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: "Cicddemo"
-        environment_name: "Cicddemo-env"
+        application_name: Cicddemo
+        environment_name: Cicddemo-env
         version_label: 12345
-        region: us-west-2
-        deployment_package: ${{env.Source}}
+        region: ap-south-1
+        deployment_package: deploy.zip
