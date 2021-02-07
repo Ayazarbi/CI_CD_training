@@ -38,13 +38,11 @@ jobs:
       run: dotnet build --no-restore
     - name: publish
       run: dotnet publish --no-build 
-    - name: Generate deployment package
-      run: zip -r deploy.zip . -x '*.git*'
-    #- name: artifact_upload
-     # uses: actions/upload-artifact@v2
-     # with:
-     #   name: generate_build_artifact
-     #   path: D:\a\CI_CD_training\CI_CD_training\Ci_Cd_DemoApp\bin\Debug\netcoreapp3.1\publish\
+    - name: artifact_upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: generate_build_artifact
+        path: D:\a\CI_CD_training\CI_CD_training\Ci_Cd_DemoApp\bin\Debug\netcoreapp3.1\publish\
    # - name: Stop Application Pool
     #  shell: cmd
      # run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="MySite",recycleMode="StopAppPool",computerName="${{ env.ComputerName }}",username="${{ env.Username }}",password="${{ env.Password }}",authtype="Basic"'
@@ -63,4 +61,4 @@ jobs:
         environment_name: Cicddemo-env
         version_label: 12345
         region: ap-south-1
-        deployment_package: deploy.zip
+        deployment_package: generate_build_artifact
